@@ -10,16 +10,16 @@ class HomeController extends Controller
     public function index()
     {
         $viewData = [];
-        $viewData["title"] = "Titulo con route";
+        $viewData["title"] = "Mi Tienda Online";
         return view('home.index')->with("viewData", $viewData);
     }
 
     public function about() {
         $viewData = [];
-        $viewData["title"] = "Tienda Online de Abby";
-        $viewData["subtitle"]  = "Todo lo que ves se vende";
-        $viewData["descripcion"]  = "Se mira y se compra";
-        $viewData["author"]  =  "Por Abigail Santana";
+        $viewData["title"] = "Mi Tienda Online";
+        $viewData["subtitle"]  = "Tienda Online de Abby";
+        $viewData["descripcion"]  = "Todo lo que buscas aquí lo encontrarás";
+        $viewData["author"]  =  "Creada por Abigail Santana";
         return view('home.about')
             ->with("viewData", $viewData);
     }
