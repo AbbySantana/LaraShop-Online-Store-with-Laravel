@@ -10,9 +10,9 @@
             <div class="col-md-8">
                 <div class="card-body">
                 <h5 class="card-title">
-                    {{ strtoupper(e($viewData["product"]["name"]))}} ({{$viewData["product"]["price"]}})
+                    {{Str::upper(e($viewData["product"]["name"]))}} ({{$viewData["product"]["price"]}})
                 </h5>
-                <p class="card-text">{{strtoupper(e($viewData["product"]["description"]))}}</p>
+                <p class="card-text">{{Str::upper(e($viewData["product"]["description"]))}}</p>
                 <p class="card-text"><small class="text-muted">Añadir a la cesta</small></p>
                 </div>
             </div>
