@@ -10,8 +10,6 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet"
         crossorigin="anonymous" />
-
-
     <link rel="stylesheet" type="text/css" href={{ asset('css/app.css') }} />
     <title>@yield('titulo_pagina', 'Mi Tienda Online')</title>
     <link rel="stylesheet" type="text/css"
@@ -39,9 +37,10 @@
             </button>
             <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div class="navbar-nav ms-auto">
-                    <a class="nav-link active" href="{{ route("home.index") }}">Home</a>
-                    <a class="nav-link active" href="{{ route("home.about") }}">About</a>
-                    <a class="nav-link active" href="{{route('products.index')}}">Products</a>
+                    <a class="nav-link active" href="{{ route('home.index') }}">Home</a>
+                    <a class="nav-link active" href="{{ route('home.about') }}">About</a>
+                    <a class="nav-link active" href="{{ route('products.index') }}">Products</a>
+                    <a class="nav-link active" href="{{ route('admin.home.index') }}">Administrador</a>
                 </div>
             </div>
         </div>
@@ -62,7 +61,7 @@
         <div class="container">
             <small>
                 Desarrollo web en entorno servidor - 2º DAW
-                {{now()->format('d-m-Y H:i:s')}}
+                {{ now()->format('d-m-Y H:i:s') }}
             </small>
         </div>
     </div>

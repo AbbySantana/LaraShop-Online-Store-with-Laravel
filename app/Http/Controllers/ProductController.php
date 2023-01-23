@@ -20,7 +20,6 @@ class ProductController extends Controller
         $product = "";
         try {$product = Product::findOrFail($id);}
         catch(ModelNotFoundException $e){return view('products.error')->with("error", $e);}
-
         $viewData = [];
         $viewData["title"] = "Detalles del Producto - Tienda online";
         $viewData["subtitle"] = "Listado de Productos";
