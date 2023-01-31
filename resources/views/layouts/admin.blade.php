@@ -32,7 +32,7 @@
         <div class="col content-grey">
             <nav class="p-3 shadow text-end">
                 <span class="profile-font">Admin</span>
-                <img class="img-profile rounded-circle" src={{ asset('img/undraw_profile.svg') }}>
+                <img class="img-profile rounded-circle" src={{ asset('storage/undraw_profile.svg') }}>
             </nav>
 
             <div class="g-0 m-5">
@@ -46,6 +46,7 @@
         <div class="container">
             <small>
                 Desarrollo web en entorno servidor - 2º DAW
+                <br><br>
                 {{ now()->format('d-m-Y H:i:s') }}
             </small>
         </div>

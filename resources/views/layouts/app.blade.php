@@ -61,6 +61,7 @@
         <div class="container">
             <small>
                 Desarrollo web en entorno servidor - 2º DAW
+                <br>
                 {{ now()->format('d-m-Y H:i:s') }}
             </small>
         </div>

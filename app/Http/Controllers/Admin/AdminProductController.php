@@ -6,6 +6,7 @@ use App\Models\Product;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
+use Illuminate\Support\Facades\Storage;
 
 class AdminProductController extends Controller
 {
@@ -25,17 +26,26 @@ class AdminProductController extends Controller
             'name' => 'required|max:255',
             'description' => 'required',
             'price' => 'required|numeric|min:0',
+            'image' => 'image',
         ]);
 
         $product = new Product();
         $product->name = $validatedData['name'];
         $product->description = $validatedData['description'];
         $product->price = $validatedData['price'];
-        $product->image = "img/game.png";
+        $product->save();
+        $id = $product->getId();
+        if ($request->hasFile('image')){
+            Storage::disk('public')->put(
+            $id .'.' . ($request->file('image')->extension()),
+            file_get_contents($request->file('image')->getRealPath())
+        );
+        $product->image =  $id .'.' . ($request->file('image')->extension());
+
+        }else{
+            $product->image = 'logoLaravel.jpeg';
+        };
         $product->save();
         return redirect()->route('admin.product.index')->with('success', 'Product created successfully');
     }
-
-
-
 }
