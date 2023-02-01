@@ -48,4 +48,46 @@ class AdminProductController extends Controller
         $product->save();
         return redirect()->route('admin.product.index')->with('success', 'Product created successfully');
     }
+
+    public function delete(int $id){
+        $product = Product::find($id);
+        $product->delete();
+        return redirect()->route('admin.product.index')->with('success', 'Product deleted successfully');
+    }
+
+    public function edit(int $id){
+        $viewData = [];
+        $viewData["title"] = "Panel de Control";
+        $product = "";
+        try {$product = Product::findOrFail($id);}
+        catch(ModelNotFoundException $e){return view('products.error')->with("error", $e);}
+        $viewData["product"] = $product;
+        return view('admin.product.edit')->with("viewData", $viewData);
+    }
+
+    public function update(int $id, Request $request){
+        $product = Product::find($id);
+        $validatedData = $request->validate([
+            'name' => 'required|max:255',
+            'description' => 'required',
+            'price' => 'required|numeric|min:0',
+        ]);
+        $product->name = $validatedData['name'];
+        $product->description = $validatedData['description'];
+        $product->price = $validatedData['price'];
+
+        dd("pepe");
+        if ($request->hasFile('image')) {
+            dd($request -> image);
+            Storage::disk('public')->delete($product->image);
+            $product->image = $id . '.' . ($request->file('image')->extension());
+
+            Storage::disk('public')->put($product->image,
+                file_get_contents($request->file('image')->getRealPath())
+            );
+        }
+        $product->save();
+        return redirect()->route('admin.product.index')->with('success', 'Product created successfully');
+
+    }
 }

@@ -76,14 +76,24 @@
                                 {{ $product['name'] }}
                             </td>
                             <td>
-                                <a href="" class="mt-2 btn bg-primary text-white">Eliminar</a>
+                                <form action="{{route('admin.product.edit', $product->getId())}}" method="GET">
+                                    <button>
+                                      Editar
+                                    </button>
+                                    @csrf
+                                </form>
                             </td>
                             <td>
-                                <a href="" class="mt-2 btn bg-primary text-white">Editar</a>
+                                <form action="{{route('admin.product.delete', $product->getId())}}" method="POST">
+                                    @method('DELETE')
+                                    <button>
+                                        Eliminar
+                                    </button>
+                                    @csrf
+                                </form>
                             </td>
                         </tr>
                     @endforeach
-
                 </tbody>
             </table>
         </div>
