@@ -17,7 +17,7 @@
                 </div>
             @endif
 
-            <form action="{{route('admin.product.update', ['id'=> $viewData['product']->getId()])}}" method="POST">
+            <form action="{{route('admin.product.update', ['id'=> $viewData['product']->getId()])}}" method="POST" enctype="multipart/form-data">
                 @method('PUT')
                 @csrf
                 <div class="row">

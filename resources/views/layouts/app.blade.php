@@ -41,6 +41,12 @@
                     <a class="nav-link active" href="{{ route('home.about') }}">About</a>
                     <a class="nav-link active" href="{{ route('products.index') }}">Products</a>
                     <a class="nav-link active" href="{{ route('admin.home.index') }}">Administrador</a>
+                    @if (!Auth::user())
+                        <a class="nav-link active" href="{{ route('login') }}">LogIn</a>
+                        <a class="nav-link active" href="{{ route('register') }}">Register</a>
+                    @else
+                        <a class="nav-link active" href="{{ route('logout') }}">LogOut</a>
+                    @endif
                 </div>
             </div>
         </div>

@@ -51,7 +51,8 @@ class AdminProductController extends Controller
 
     public function delete(int $id){
         $product = Product::find($id);
-        $product->delete();
+        Storage::disk('public')->delete($product->image);
+        Product::destroy($id);
         return redirect()->route('admin.product.index')->with('success', 'Product deleted successfully');
     }
 
@@ -76,9 +77,8 @@ class AdminProductController extends Controller
         $product->description = $validatedData['description'];
         $product->price = $validatedData['price'];
 
-        dd("pepe");
+
         if ($request->hasFile('image')) {
-            dd($request -> image);
             Storage::disk('public')->delete($product->image);
             $product->image = $id . '.' . ($request->file('image')->extension());
 
