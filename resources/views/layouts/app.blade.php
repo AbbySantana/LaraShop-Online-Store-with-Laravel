@@ -40,13 +40,21 @@
                     <a class="nav-link active" href="{{ route('home.index') }}">Home</a>
                     <a class="nav-link active" href="{{ route('home.about') }}">About</a>
                     <a class="nav-link active" href="{{ route('products.index') }}">Products</a>
-                    <a class="nav-link active" href="{{ route('admin.home.index') }}">Administrador</a>
-                    @if (!Auth::user())
+                    @auth
+                        @if (Auth::user()->getRole() == 'admin')
+                            <a class="nav-link active" href="{{ route('admin.home.index') }}">Admin</a>
+                        @endif
+                    @endauth
+                    @guest
                         <a class="nav-link active" href="{{ route('login') }}">LogIn</a>
                         <a class="nav-link active" href="{{ route('register') }}">Register</a>
-                    @else
+                    @endguest
+                    @auth
+                        <a class="nav-link active" href="{{ route('perfil') }}">Perfil</a>
                         <a class="nav-link active" href="{{ route('logout') }}">LogOut</a>
-                    @endif
+                    @endauth
+
+
                 </div>
             </div>
         </div>
