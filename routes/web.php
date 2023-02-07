@@ -22,12 +22,6 @@ Route::get('/products', 'App\Http\Controllers\ProductController@index')->name("p
 
 Route::get('/products/{id}', 'App\Http\Controllers\ProductController@show')->name("products.show");
 
-Route::get('logout', 'App\Http\Controllers\Auth\LoginController@logout');
-
-Route::get('perfil', 'App\Http\Controllers\PerfilController@perfil')->name('perfil');
-
-Auth::routes();
-
 Route::middleware('admin')->group(function () {
     Route::get('/admin', 'App\Http\Controllers\Admin\AdminHomeController@index')->name('admin.home.index');
 
@@ -42,4 +36,12 @@ Route::middleware('admin')->group(function () {
     Route::put('/admin/products/{id}/update', 'App\Http\Controllers\Admin\AdminProductController@update')->name("admin.product.update");
 
 });
+
+Auth::routes();
+
+Route::get('logout', 'App\Http\Controllers\Auth\LoginController@logout');
+
+Route::get('perfil', 'App\Http\Controllers\PerfilController@perfil')->name('perfil');
+
+Route::post('perfil/update', 'App\Http\Controllers\PerfilController@update')->name('perfil.update');
 

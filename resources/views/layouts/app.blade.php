@@ -23,8 +23,8 @@
     <script type="text/javascript"
         src="https://www3.gobiernodecanarias.org/educacion/cau_ce/estadisticasweb/scripts/piwik-eforma.js"></script>
 </head>
+    <body style="font-family: {{ session('font', '') }}">
 
-<body>
 
     <!-- header -->
 
@@ -53,14 +53,12 @@
                         <a class="nav-link active" href="{{ route('perfil') }}">Perfil</a>
                         <a class="nav-link active" href="{{ route('logout') }}">LogOut</a>
                     @endauth
-
-
                 </div>
             </div>
         </div>
     </nav>
+     <header class="masthead text-white text-center py-4" style="background-color: {{ session('color', '#1abc9c') }}">
 
-    <header class="masthead bg-primary text-white text-center py-4">
         <div class="container d-flex align-items-center flex-column">
             <h2>@yield('subtitle', 'Una tienda online Laravel')</h2>
         </div>

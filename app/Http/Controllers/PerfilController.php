@@ -12,4 +12,10 @@ class PerfilController extends Controller
         $viewData["title"] = "Perfil del usuario";
         return view('perfil')->with("viewData", $viewData);
     }
+
+    public function update(Request $request){
+        session(['color' => $request->color]);
+        session(['font' => $request->font]);
+        return redirect()->back();
+    }
 }
