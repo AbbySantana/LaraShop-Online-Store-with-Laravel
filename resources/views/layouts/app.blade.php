@@ -50,7 +50,7 @@
                         <a class="nav-link active" href="{{ route('register') }}">Register</a>
                     @endguest
                     @auth
-                        <a class="nav-link active" href="{{ route('perfil') }}">Perfil</a>
+                        <a class="nav-link active" href="{{ route('perfil') }}">{{Auth::user()->getName()}}</a>
                         <a class="nav-link active" href="{{ route('logout') }}">LogOut</a>
                     @endauth
                 </div>

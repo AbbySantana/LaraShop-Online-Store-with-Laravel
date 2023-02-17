@@ -45,3 +45,5 @@ Route::get('perfil', 'App\Http\Controllers\PerfilController@perfil')->name('perf
 
 Route::post('perfil/update', 'App\Http\Controllers\PerfilController@update')->name('perfil.update');
 
+
+

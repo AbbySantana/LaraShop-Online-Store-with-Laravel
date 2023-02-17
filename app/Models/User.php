@@ -45,4 +45,8 @@ class User extends Authenticatable
     public function getRole(): String{
         return $this -> attributes["role"];
     }
+
+    public function getName(): String{
+        return $this -> attributes["name"];
+    }
 }

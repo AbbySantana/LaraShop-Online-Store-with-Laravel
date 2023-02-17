@@ -42,6 +42,12 @@
                             <input type="file" class="form-control" name="image">
                         </div>
                     </div>
+                    <div class="especificaciones">
+                        <label >Seleccione un archivo (especificaciones):</label>
+                        <div class="col-lg-10 col-md-6 col-sm-12">
+                            <input type="file" class="form-control" name="especificaciones">
+                        </div>
+                    </div>
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Descripción</label>

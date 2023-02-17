@@ -27,12 +27,14 @@ class AdminProductController extends Controller
             'description' => 'required',
             'price' => 'required|numeric|min:0',
             'image' => 'image',
+            'especificaciones' => 'required',
         ]);
 
         $product = new Product();
         $product->name = $validatedData['name'];
         $product->description = $validatedData['description'];
         $product->price = $validatedData['price'];
+        $product->especificaciones = $validatedData['especificaciones'];
         $product->save();
         $id = $product->getId();
         if ($request->hasFile('image')){
@@ -46,12 +48,23 @@ class AdminProductController extends Controller
             $product->image = 'logoLaravel.jpeg';
         };
         $product->save();
+        $id = $product->getId();
+        if ($request->hasFile('especificaciones')){
+            Storage::disk('public')->put(
+            $id .'.' . ($request->file('especificaciones')->extension()),
+            file_get_contents($request->file('especificaciones')->getRealPath())
+        );
+        $product->especificaciones =  $id .'.' . ($request->file('especificaciones')->extension());
+
+        };
+        $product->save();
         return redirect()->route('admin.product.index')->with('success', 'Product created successfully');
     }
 
     public function delete(int $id){
         $product = Product::find($id);
         Storage::disk('public')->delete($product->image);
+        Storage::disk('public')->delete($product->especificaciones);
         Product::destroy($id);
         return redirect()->route('admin.product.index')->with('success', 'Product deleted successfully');
     }
@@ -84,6 +97,15 @@ class AdminProductController extends Controller
 
             Storage::disk('public')->put($product->image,
                 file_get_contents($request->file('image')->getRealPath())
+            );
+        }
+
+        if ($request->hasFile('especificaciones')) {
+            Storage::disk('public')->delete($product->especificaciones);
+            $product->especificaciones = $id . '.' . ($request->file('especificaciones')->extension());
+
+            Storage::disk('public')->put($product->especificaciones,
+                file_get_contents($request->file('especificaciones')->getRealPath())
             );
         }
         $product->save();
